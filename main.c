@@ -15,6 +15,7 @@ int main(void)
     {
         char *u_input_line;
         size_t input_size_line = 0;
+        ssize_t char_read;
 
         while (1)
         {
