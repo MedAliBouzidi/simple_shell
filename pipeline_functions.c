@@ -9,7 +9,7 @@
 **/
 void handle_err(const char *message)
 {
-    fprintf(stderr, "%s\n", message);
+	fprintf(stderr, "%s\n", message);
 }
 
 /**
@@ -22,13 +22,13 @@ void handle_err(const char *message)
 **/
 void close_pipes(int pipefd[][2], int num_pipes)
 {
-    int i;
+	int i;
 
-    for (i = 0; i < num_pipes; i++)
-    {
-        close(pipefd[i][0]);
-        close(pipefd[i][1]);
-    }
+	for (i = 0; i < num_pipes; i++)
+	{
+		close(pipefd[i][0]);
+		close(pipefd[i][1]);
+	}
 }
 
 /**
@@ -40,10 +40,10 @@ void close_pipes(int pipefd[][2], int num_pipes)
 **/
 void wait_children(int num_cmds)
 {
-    int i;
+	int i;
 
-    for (i = 0; i < num_cmds; i++)
-        wait(NULL);
+	for (i = 0; i < num_cmds; i++)
+		wait(NULL);
 }
 
 /**
@@ -58,32 +58,32 @@ void wait_children(int num_cmds)
 **/
 void execute_cmds(char *cmds[], int num_cmds, int pipefd[][2], char *envp[])
 {
-    int i;
+	int i;
 
-    for (i = 0; i < num_cmds; i++)
-    {
-        pid_t pid = fork();
+	for (i = 0; i < num_cmds; i++)
+	{
+		pid_t pid = fork();
 
-        if (pid == -1)
-        {
-            perror("fork");
-            handle_err("Failed to create child process.");
-            exit(1);
-        }
-        if (pid == 0)
-        {
-            if (i == 0)
-                dup2(pipefd[i][1], STDOUT_FILENO);
-            else if (i == num_cmds - 1)
-                dup2(pipefd[i - 1][0], STDIN_FILENO);
-            else
-            {
-                dup2(pipefd[i - 1][0], STDIN_FILENO);
-                dup2(pipefd[i][1], STDOUT_FILENO);
-            }
+		if (pid == -1)
+		{
+			perror("fork");
+			handle_err("Failed to create child process.");
+			exit(1);
+		}
+		if (pid == 0)
+		{
+			if (i == 0)
+				dup2(pipefd[i][1], STDOUT_FILENO);
+			else if (i == num_cmds - 1)
+				dup2(pipefd[i - 1][0], STDIN_FILENO);
+			else
+			{
+				dup2(pipefd[i - 1][0], STDIN_FILENO);
+				dup2(pipefd[i][1], STDOUT_FILENO);
+			}
 
-            close_pipes(pipefd, num_cmds - 1);
-            exit(handle_cmd(cmds[i], envp));
-        }
-    }
+			close_pipes(pipefd, num_cmds - 1);
+			exit(handle_cmd(cmds[i], envp));
+		}
+	}
 }

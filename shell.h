@@ -64,7 +64,7 @@ char *_strcat(const char *str1, const char *str2);
 
 int _env(void);
 
-void _exit(char **args);
+void cust_exit(char **args);
 
 int _atoi(char *str);
 

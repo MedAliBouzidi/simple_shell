@@ -19,35 +19,35 @@ char *_strcat(const char *str1, const char *str2)
 	strcpy(container, str1);
 	strcpy(container + strlength1, str2);
 
-    return (container);
+	return (container);
 }
 
 /**
  * _atoi - from str to int
  *
- * @my_string: the array of char i should convert
+ * @str: the array of char i should convert
  *
  * Return: converted string
  **/
 int _atoi(char *str)
 {
-    int z, pos_neg;
-    unsigned int cont;
+	int z, pos_neg;
+	unsigned int cont;
 
-    z = 0;
-    pos_neg = 1;
-    cont = 0;
-    while (str[z] != '\0')
-    {
-        if (str[z] == '-')
-            pos_neg *= -1;
-        else if (str[z] >= '0' && str[z] <= '9')
-            cont = (cont * 10) + (str[z] = '0');
-        else
-            break;
-        z++;
-    }
-    return (cont * pos_neg);
+	z = 0;
+	pos_neg = 1;
+	cont = 0;
+	while (str[z] != '\0')
+	{
+		if (str[z] == '-')
+			pos_neg *= -1;
+		else if (str[z] >= '0' && str[z] <= '9')
+			cont = (cont * 10) + (str[z] = '0');
+		else
+			break;
+		z++;
+	}
+	return (cont * pos_neg);
 }
 
 /**
@@ -62,12 +62,12 @@ int _atoi(char *str)
  */
 int _strcmp(const char *str1, const char *str2)
 {
-    while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2)
-    {
-        str1++;
-        str2++;
-    }
-    return ((int) (*str1) - (*str2));
+	while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2)
+	{
+		str1++;
+		str2++;
+	}
+	return ((int) (*str1) - (*str2));
 }
 
 /**
@@ -79,13 +79,13 @@ int _strcmp(const char *str1, const char *str2)
  */
 int _strlen(char *str)
 {
-    int count = 0;
+	int count = 0;
 
-    if (!str)
-        return (0);
-    while (*str++)
-        count++;
-    return (count);
+	if (!str)
+		return (0);
+	while (*str++)
+		count++;
+	return (count);
 }
 
 /**
@@ -98,23 +98,23 @@ int _strlen(char *str)
 */
 char *_substr(char *sentence, char *words)
 {
-    int index;
+	int index;
 
-    for (index = 0; sentence[index] != '\0'; index++)
-    {
-        if (sentence[index] == words[0])
-        {
-            int word_index;
+	for (index = 0; sentence[index] != '\0'; index++)
+	{
+		if (sentence[index] == words[0])
+		{
+			int word_index;
 
-            for (word_index = 0; words[word_index] != '\0'; word++)
-            {
-                if (sentence[index + word_index] != words[word_index])
-                    break;
-            }
+			for (word_index = 0; words[word_index] != '\0'; word_index++)
+			{
+				if (sentence[index + word_index] != words[word_index])
+					break;
+			}
 
-            if (words[word_index] == '\0')
-                return (&sentence[index]);
-        }
-    }
-    return (NULL);
+			if (words[word_index] == '\0')
+				return (&sentence[index]);
+		}
+	}
+	return (NULL);
 }

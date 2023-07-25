@@ -10,30 +10,30 @@
  */
 ssize_t read_input(char **line_input, size_t *size_input)
 {
-    ssize_t char_read = getline(line_input, size_input, stdin);
+	ssize_t char_read = getline(line_input, size_input, stdin);
 
-    if (char_read == -1)
-    {
-        perror("Error: Failed to read input");
-        exit(EXIT_FAILURE);
-    }
-    return (char_read);
+	if (char_read == -1)
+	{
+		perror("Error: Failed to read input");
+		exit(EXIT_FAILURE);
+	}
+	return (char_read);
 }
 
 
 /**
- * _strcat - print the environmental variables of the shell
+ * _env - print the environmental variables of the shell
  *
  * Return: 1
 **/
 int _env(void)
 {
-    int count = 0;
+	int count = 0;
 
-    while (environ[count] != NULL)
-    {
-        printf("%s\n", environ[count]);
-        count++;
-    }
-    return (1);
+	while (environ[count] != NULL)
+	{
+		printf("%s\n", environ[count]);
+		count++;
+	}
+	return (1);
 }

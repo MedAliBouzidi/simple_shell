@@ -11,9 +11,8 @@
 */
 void handle_input(char *input, char *envp[])
 {
-    if (_substr(input, "|"))
-        runner(input, envp);
-    else
-        handle_cmd(input, envp);
-
+	if (_substr(input, "|"))
+		runner(input, envp);
+	else
+		handle_cmd(input, envp);
 }

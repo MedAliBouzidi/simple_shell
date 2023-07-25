@@ -30,8 +30,7 @@ pid_t fork_execute_function(char **arr_str, char *env[])
 	else
 	{
 		if (wait(&waiting_status) == -1)
-            perror("Error: Wait failed");
-
+			perror("Error: Wait failed");
 		return (WEXITSTATUS(waiting_status));
 	}
 	return (-1);
